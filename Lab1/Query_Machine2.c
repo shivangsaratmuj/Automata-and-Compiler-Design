@@ -5,55 +5,53 @@ int main()
   char input[10];
   printf("Input:");
   scanf("%s", input);
-  for (i = 0; input[i] != '\0'; i++) //till length of input
+  for (i = 0; input[i] != '\0'; i++)
   {
-    if (current_state == 0) //current state is integer
+    /* reject if input has a value other then 0 or 1 */
+    if (input[i] != '0' && input[i] != '1')
     {
-      if (input[i] == '0') // go to state 1 if value is 0
-        current_state = 1;
-      else if (input[i] == '1') // go to state 3 if value is 1
-        current_state = 3;
-      else // reject if input has value other than 0 or 1
-      {
-        printf("Input should contain only 0 or 1\n");
-        return -1; // error
-      }
+      printf("Input should contain only 0 or 1\n");
+      return -1; // error
     }
+    /* for current state 0
+    goto to state 1 for next value as 0
+    goto to state 3 for next value as 1*/
+    if (current_state == 0) 
+    {
+      if (input[i] == '0')
+        current_state = 1;
+      else
+        current_state = 3;
+    }
+    /* for current state 1
+    goto to state 1 for next value as 0
+    goto to state 2 for next value as 1 */
     else if (current_state == 1)
     {
       if (input[i] == '0')
         current_state = 1;
-      else if (input[i] == '1')
+      else
         current_state = 2;
-      else // reject if input has value other than 0 or 1
-      {
-        printf("Input should contain only 0 or 1\n");
-        return -1; //error
-      }
     }
+    /* for current state 2
+    goto to state 1 for next value as 0
+    goto to state 2 for next value as 1*/
     else if (current_state == 2)
     {
       if (input[i] == '0')
         current_state = 1;
-      else if (input[i] == '1')
+      else
         current_state = 2;
-      else // reject if input has value other than 0 or 1
-      {
-        printf("Input should contain only 0 or 1\n");
-        return -1; //error
-      }
     }
+    /* for current state 3
+    goto to state 1 for next value as 0
+    goto to state 2 for next value as 1*/
     else if (current_state == 3)
     {
       if (input[i] == '0')
         current_state = 1;
-      else if (input[i] == '1')
+      else
         current_state = 2;
-      else // reject if input has value other than 0 or 1
-      {
-        printf("Input should contain only 0 or 1\n");
-        return -1; //error
-      }
     }
   }
   if (current_state == 2)
