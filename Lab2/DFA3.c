@@ -1,3 +1,6 @@
+/*
+  Write a C program for a DFA that accepts only even number of 1s
+*/
 #include <stdio.h>
 int main()
 {
