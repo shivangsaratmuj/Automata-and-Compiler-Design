@@ -14,7 +14,7 @@ int main()
       return -1; // error
     }
     /* for current state 0
-    goto to state 0 for next value as 1
+    goto to state 1 for next value as 1
     remain at state 0 for next value as 0*/
     if (current_state == 0)
     {
@@ -24,35 +24,17 @@ int main()
         current_state = 1;
     }
     /* for current state 1
-    go to state 2 for next value as 0
-    go to state 3 for next value as 1*/
-    else if(current_state == 1)
+    go to state 0 for next value as 1
+    remain at state 1 for next value as 0*/
+    else
     {
       if (input[i] == '0')
-        current_state = 2;
+        current_state = 1;
       else
-        current_state = 3;
-    }
-    /* for current state 2
-    go to state 3 for next value as 0
-    remain at state 2 for next value as 1*/
-    else if(current_state==2) {
-      if (input[i] == '0')
-        current_state = 3;
-      else
-        current_state = 2;
-    }
-    /* for current state 3
-    go to state 0 for next value as 0
-    remain at state 3 for next value as 1*/
-    else {
-      if (input[i] == '0')
         current_state = 0;
-      else
-        current_state = 3;
     }
   }
-  if (current_state == 3) //if current state is ending where it should end
+  if (current_state == 0) //if current state is ending where it should end
     printf("Accepted\n");
   else // else reject
     printf("Not Accepted\n");
